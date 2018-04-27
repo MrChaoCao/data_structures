@@ -11,8 +11,8 @@ class DynamicArray
 
   # O(1)
   def [](index)
-    @store[index]
     raise "index out of bounds" if index >= @length
+    @store[index]
   end
 
   # O(1)
@@ -31,7 +31,7 @@ class DynamicArray
   # resize.
   def push(val)
     resize! if @length == @capacity
-    @store[length] = val
+    @store[@length] = val
     @length += 1
   end
 
@@ -54,7 +54,6 @@ class DynamicArray
     end
     @store[0] = val
     @length += 1
-    p @store
   end
 
   protected

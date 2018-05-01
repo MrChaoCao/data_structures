@@ -18,14 +18,7 @@ class QueueWithMax
 
   def enqueue(val)
     @store.push(val)
-    if @max.empty? || @max.first < val
-      @max = [val]
-    elsif @max.last > val
-      while val > @max.last
-        @max.pop
-      end
-      @max.push(val)
-    end
+    update_max(val)
   end
 
   def dequeue
@@ -42,6 +35,17 @@ class QueueWithMax
 
   def length
     @store.length
+  end
+
+  def update_max(val)
+    if @max.empty? || @max.first < val
+      @max = [val]
+    elsif @max.last > val
+      while val > @max.last
+        @max.pop
+      end
+      @max.push(val)
+    end
   end
 
 end

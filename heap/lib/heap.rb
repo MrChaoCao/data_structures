@@ -28,13 +28,11 @@ class BinaryMinHeap
 
   public
   def self.child_indices(len, parent_index)
+    double = 2 * parent_index
     children = []
 
-    first_child = (parent_index * 2) + 1
-    second_child = first_child + 1
-
-    children << first_child if first_child < len
-    children << second_child if second_child < len
+    children << double + 1 unless double + 1 > len - 1
+    children << double + 2 unless double + 2 > len - 1
 
     children
   end
@@ -48,13 +46,18 @@ class BinaryMinHeap
     children = child_indices(len, parent_idx)
     return array if children.empty?
     prc ||= Proc.new {|a,b| a <=> b}
-    child_idx = prc.call(array[children.first], array[children.last]) < 0 ? children.first : children.last
+
+    if children.length == 2
+      child_idx = prc.call(array[children.first], array[children.last]) < 0 ? children.first : children.last
+    else
+      child_idx = children.first
+    end
 
     if prc.call(array[child_idx], array[parent_idx]) < 0
       array[parent_idx], array[child_idx] = array[child_idx], array[parent_idx]
-      heapify_down(array, child_idx, len = array.length, &prc)
     end
-    array
+
+    heapify_down(array, child_idx, len, &prc)
   end
 
   def self.heapify_up(array, child_idx, len = array.length, &prc)

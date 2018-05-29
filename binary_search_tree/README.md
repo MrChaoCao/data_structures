@@ -24,11 +24,11 @@ This class will be pretty simple. We need only an `#initialize` method and the a
 
 Now comes the fun stuff. We'll recreate all the functionality discussed in the lecture on our `BinarySearchTree`, plus a couple extras.  
 
-**NB: There are multiple ways to implement these various methods. If you need to, feel free to tweak the skeleton and add helper methods in order to write the methods in a way that makes sense to you, as long as it passes the specs. _However, please do not change the specs._** 
+**NB: There are multiple ways to implement these various methods. If you need to, feel free to tweak the skeleton and add helper methods in order to write the methods in a way that makes sense to you, as long as it passes the specs. _However, please do not change the specs._**
 
 **In our implementation of the BST, some of these BST methods call on helper methods and allow for the recursion to happen in the helper methods. But again, it's up to you to decide how you want to implement your methods, as long as it properly executes what it needs to do on a Binary Search Tree.**
 
-Also, in the skeleton file for the `BinarySearchTree` class, there are method arguments that have a variable named `tree_node`. A `tree_node` is essentially just a root node, and we call it a `tree_node` because it holds access to the rest of the tree. We didn't want to also call it `root_node` since we already had a `@root`. 
+Also, in the skeleton file for the `BinarySearchTree` class, there are method arguments that have a variable named `tree_node`. A `tree_node` is essentially just a root node, and we call it a `tree_node` because it holds access to the rest of the tree. We didn't want to also call it `root_node` since we already had a `@root`.
 
 #### `#initialize`
 

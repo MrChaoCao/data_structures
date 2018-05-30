@@ -2,11 +2,16 @@
 # to methods as you see fit, or to create helper methods.
 
 class BinarySearchTree
+  attr_accessor :root
+
   def initialize
-    @
+    @root = nil
   end
 
   def insert(value)
+    if @root = nil
+      @root = BSTNode.new(value)
+    end
   end
 
   def find(value, tree_node = @root)

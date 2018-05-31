@@ -9,9 +9,23 @@ class BinarySearchTree
   end
 
   def insert(value)
-    if @root = nil
+    if @root.nil?
       @root = BSTNode.new(value)
+    else
+      insert_helper(@root, value)
     end
+  end
+
+  def insert_helper(node, value)
+    return BSTNode.new(value) if node.nil?
+
+    if value < node.value
+      node.left = insert_helper(node.left, value)
+    else
+      node.right = insert_helper(node.right, value)
+    end
+
+    node
   end
 
   def find(value, tree_node = @root)

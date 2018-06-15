@@ -3,9 +3,7 @@ class BSTNode
   attr_accessor :left, :right
 
   def initialize(value)
-    @parent = nil
     @value = value
-    @left = nil
-    @right = nil
+    @left, @right = nil
   end
 end

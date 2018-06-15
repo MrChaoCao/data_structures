@@ -8,42 +8,58 @@ class BinarySearchTree
     @root = nil
   end
 
-  def insert(value)
-    if @root.nil?
-      @root = BSTNode.new(value)
+  def insert(value, current_node = @root)
+    @root = BSTNode.new(value) if @root.nil?
+    return BSTNode.new(value) if current_node.nil?
+
+    if value < current_node.value
+      current_node.left = insert(value, current_node.left)
     else
-      insert_helper(@root, value)
+      current_node.right = insert(value, current_node.right)
+    end
+
+    current_node
+  end
+
+  def find(value, current_node = @root)
+    return nil if current_node.nil?
+    return current_node if value == current_node.value
+
+    if value < current_node.value
+      current_node.left = find(value, current_node.left)
+    else
+      current_node.right = find(value, current_node.right)
     end
   end
 
-  def insert_helper(node, value)
-    return BSTNode.new(value) if node.nil?
-
-    if value < node.value
-      node.left = insert_helper(node.left, value)
+  def delete(value, current_node = @root)
+    return nil if current_node.nil?
+    if value == current_node.value
+      current_node = delete_helper(current_node)
+    elsif value < current_node.value
+      current_node.left = delete(value, current_node.left)
     else
-      node.right = insert_helper(node.right, value)
+      current_node.right = delete(value, current_node.right)
     end
 
-    node
+    current_node
   end
 
-  def find(value, tree_node = @root)
-    return nil unless tree_node
-    if value == tree_node.value
-      tree_node
-    elsif tree_node.value > value
-      find(value, tree_node.left)
-    else
-      find(value, tree_node.right)
+  def delete_helper(current_node)
+    if current_node == @root
+      @root = nil
+    elsif current_node.left.nil? && current_node.right.nil?
+      current_node = nil
     end
-  end
-
-  def delete(value)
   end
 
   # helper method for #delete:
   def maximum(tree_node = @root)
+    if tree_node.right.nil?
+      tree_node
+    else
+      tree_node.right = maximum(tree_node.right)
+    end
   end
 
   def depth(tree_node = @root)
